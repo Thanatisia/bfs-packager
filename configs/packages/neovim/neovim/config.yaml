@@ -1,0 +1,35 @@
+specifications:
+  platform:
+    architecture: x86_64
+    system: linux
+    distribution: debian
+
+  compiler:
+    CC: "make"
+    CFLAGS: ""
+
+  package:
+    author: "neovim"
+    name: "neovim"
+    remote:
+        server: github
+        source: "https://github.com/neovim/neovim"
+    package-manager: apt
+    dependencies: 
+      - git 
+      - ninja 
+      - gettext 
+      - libtool 
+      - autoconf 
+      - automake 
+      - cmake 
+      - base-devel 
+      - pkg-config 
+      - unzip 
+      - curl 
+      - doxygen
+
+  build:
+    bin:
+      ## Binaries
+      - nvim

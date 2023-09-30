@@ -1,0 +1,10 @@
+# Git ignore list
+
+## Files
+
+## Folders
+### Python cache
+__pycache__/
+
+### Virtual Environments
+env/
