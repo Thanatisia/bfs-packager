@@ -8,6 +8,7 @@ import os
 import sys
 
 ## Classes
+from lib.cli import CLIParser
 from lib.classes import AppConfig
 
 class App():
@@ -80,20 +81,112 @@ class App():
         # Print keys
         self.config.print_yaml_key_Pretty("specifications", *self.config.keys)
 
+    def body(self):
+        """
+        Begin CLI argument processing
+        """
+        ## Switch-case CLI optionals
+        for k,v in optionals.items():
+            # Get keyword and value
+            curr_opt = k
+            curr_opt_val = v
+
+            # Process and check
+            if (curr_opt == "help"):
+                if (curr_opt_val == True):
+                    display_help()
+                    display_Options()
+                    exit(1)
+            elif (curr_opt == "display-options"):
+                if (curr_opt_val == True):
+                    display_Options()
+                    exit(1)
+            elif (curr_opt == "generate-config"):
+                if (curr_opt_val == True):
+                    # Get the new custom configuration file name (if any)
+                    cfg_name = cliparser.configurations["optionals"]["CUSTOM_CONFIGURATION_FILENAME"]
+                    setup.generate_config(cfg_name)
+                    exit(1)
+            elif (curr_opt == "print-config"):
+                if (curr_opt_val == True):
+                    # Get the new custom configuration file name (if any)
+                    cfg_name = cliparser.configurations["optionals"]["CUSTOM_CONFIGURATION_FILENAME"]
+
+                    # Import configuration file, load it and print
+                    setup.cfg = setup.load_config(cfg_name)
+
+                    # Print out configuration dictionary object
+                    for k,v in setup.cfg.items():
+                        print("{} : {}".format(k,v))
+                    exit(1)
+            elif (curr_opt == "MODE"):
+                if (curr_opt_val != None):
+                    # Get the new mode (if any)
+                    new_mode = cliparser.configurations["optionals"]["MODE"]
+
+                    # Set the new mode into the Environment Variable class variable
+                    setup.env.MODE = new_mode
+
+        ## Switch-case CLI positionals
+        for i in range(len(positionals)):
+            curr_pos = positionals[i]
+            if (curr_pos == "build"):
+                """
+                Start the Building/Make/Compilation
+                """
+                # Initialize and perform pre-processing and pre-startup checks
+                init_check()
+
+                print("")
+                print("(+) Beginning Compilation...")
+                print("")
+            elif (curr_pos == "clone"):
+                """
+                Start cloning the project
+                """
+                print("")
+                print("(+) Beginning project clone...")
+                print("")
+            elif (curr_pos == "download"):
+                """
+                Start downloading a package's configuration file (config.yaml)
+                """
+                print("")
+                print("(+) Downloading package configuration file...")
+                print("")
+            elif (curr_pos == "install"):
+                """
+                Start installing the package from source to the system
+                """
+                print("")
+                print("(+) Beginning package installation...")
+                print("")
+            elif (curr_pos == "uninstall"):
+                """
+                Start uninstalling the package from the system
+                """
+                print("")
+                print("(+) Beginning package uninstallation...")
+                print("")
+
     def run(self):
         """
         Main application driver function
         """
+        self.body()
 
 def setup():
-    global app, config, yaml
+    global app, config, yaml, optionals, positionals
 
     # Initialize Classes
     app = App()
+    cliparser = CLIParser()
 
     # Initialize Variables
     config = app.config
     yaml = config.yaml
+    optionals = cliparser.optionals
+    positionals = cliparser.positionals
 
 def main():
     # Perform initial setup

@@ -115,6 +115,9 @@ project-root/
 - [ ] CLI Terminal support
 - [X] Read from YAML config file
 - [X] Import YAML configurations
++ [ ] Import configuration file via JSON
++ [ ] Import configuration file JSON strings via Pipes
++ [ ] Import configuration file JSON strings via Pipes through the network using CURL
 - [ ] Support build and package management functionalities using the package's configurations
     - [ ] Download a specified package's YAML config file from a specified remote repository server
     - [ ] Install dependencies
@@ -129,5 +132,4 @@ project-root/
 + [ ] Support for multi-sourced dependency management, such as installing dependencies from selected Package Managers and/or self-handling
 + [ ] External Configuration File specification : Explicitly specify a configuration file of choice to import
 + [ ] Multiple configuration file Data Serializable object type support : Explicitly specify the data serialization file type; i.e. JSON support
-
 
