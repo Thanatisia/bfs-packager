@@ -1,12 +1,26 @@
 specifications:
+  environment:
+    ## Environment Variables here
+    - PREFIX=/usr/local/
+
   platform:
+    ## System Platform Information here
     architecture: x86_64
     system: linux
     distribution: debian
 
   compiler:
+    ## Compiler information here
     CC: "make"
     CFLAGS: ""
+
+  runner:
+    ## Runner information here
+    exec: "python"
+    flags:
+      ## Executable Flags
+      ## - flag
+      ## - here
 
   package:
     author: "neovim"
@@ -28,8 +42,15 @@ specifications:
       - unzip 
       - curl 
       - doxygen
-
-  build:
     bin:
       ## Binaries
       - nvim
+    locations:
+      ## Specify Installation paths here
+      executables: ${PREFIX}/bin
+      # manuals: /usr/man/man.1/
+      documentations: ${PREFIX}/share/doc/neovim
+
+  build:
+    steps:
+
