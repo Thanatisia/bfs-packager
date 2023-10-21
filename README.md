@@ -127,6 +127,8 @@ project-root/
     - [ ] Uninstall from system
     - [ ] Clean-up source
     - [ ] Backup source file
+- [ ] Download type swap/change (i.e. build-from-source/bfs <==> binary)
+    - [ ] Binary file download support : Download the binary from the releases of the remote repository server instead of building from source
 
 ### Quality of Life
 + [ ] Support for multi-sourced dependency management, such as installing dependencies from selected Package Managers and/or self-handling
